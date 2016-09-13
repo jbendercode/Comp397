@@ -1,32 +1,23 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 console.log("Game is opening...");
-var Person = (function () {
-    function Person(name) {
-        this._name = name;
-    }
-    Person.prototype.speak = function () {
-        console.log(this._name + " says hello");
-    };
-    return Person;
-}());
-var Student = (function (_super) {
-    __extends(Student, _super);
-    function Student(name, studentNum) {
-        _super.call(this, name);
-        this._studentNum = studentNum;
-    }
-    Student.prototype.studies = function () {
-        console.log(this._name + " is studying");
-    };
-    return Student;
-}(Person));
-var person = new Person("Josh");
-person.speak();
-var student = new Student("Jacky", 300123456);
-student.speak();
-student.studies();
+var canvas;
+var stage;
+function init() {
+    // Initialize game elements
+    canvas = document.getElementById("canvas");
+    stage = new createjs.Stage(canvas);
+    // Enable mouseover and tracking
+    stage.enableMouseOver(20);
+    // Set FPS
+    createjs.Ticker.setFPS(60);
+    // Set up event listener for update loop
+    createjs.Ticker.on("tick", gameLoop, this);
+}
+// Update loop
+function gameLoop(event) {
+    // Initialize text value
+    var boilerPlateText = new createjs.Text("Comp 397 - Boiler Plate", "60px Consolas", "#FFF");
+    this.stage.addChild(boilerPlateText);
+    this.stage.update();
+    this.simulate();
+}
 //# sourceMappingURL=game.js.map

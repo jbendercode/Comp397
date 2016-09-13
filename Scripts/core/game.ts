@@ -1,33 +1,31 @@
 console.log("Game is opening...");
 
-class Person{
-    protected _name : string;
+var canvas : HTMLElement;
+var stage : createjs.Stage;
+
+function init(){
+    // Initialize game elements
+    canvas = document.getElementById("canvas");
+    stage = new createjs.Stage(canvas);
     
-    constructor(name : string){
-        this._name = name;
-    }
+    // Enable mouseover and tracking
+    stage.enableMouseOver(20);
     
-    public speak() : void{
-        console.log(this._name + " says hello");
-    }
+    // Set FPS
+    createjs.Ticker.setFPS(60);
+    
+    // Set up event listener for update loop
+    createjs.Ticker.on("tick", gameLoop, this);
+    
 }
 
-class Student extends Person {
-    private _studentNum : number;
+// Update loop
+function gameLoop(event : createjs.TickerEvent) : void {
+    // Initialize text value
+    var boilerPlateText : createjs.Text = new createjs.Text("Comp 397 - Boiler Plate", 
+                                                            "60px Consolas", "#FFF");
+                                                            
+    stage.addChild(boilerPlateText);
     
-    constructor(name : string, studentNum : number){
-        super(name);
-        this._studentNum = studentNum;
-    }
-    
-    public studies() : void {
-        console.log(this._name + " is studying");
-    }
+    stage.update();
 }
-
-var person : Person = new Person("Josh");
-person.speak();
-
-var student : Student = new Student("Jacky", 300123456);
-student.speak();
-student.studies();
