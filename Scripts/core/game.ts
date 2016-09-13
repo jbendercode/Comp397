@@ -1,3 +1,5 @@
+console.log("Game is opening...");
+
 class Person{
     protected _name : string;
     
