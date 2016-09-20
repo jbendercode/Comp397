@@ -1,10 +1,25 @@
 console.log("Game is opening...");
 var canvas;
 var stage;
+var playButton;
 function init() {
     // Initialize game elements
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
+    // Initialize text value
+    var boilerPlateText = new createjs.Text("Comp 397 - Boiler Plate", "26px Consolas", "#FFF");
+    boilerPlateText.x = 50;
+    boilerPlateText.y = 20;
+    // Initialize image
+    var image = new Image();
+    image.src = "../../Assets/images/reticle.png";
+    var img = new createjs.Bitmap(image);
+    img.scaleX = 0.25;
+    img.scaleY = 0.25;
+    img.x = 400;
+    img.y = 20;
+    stage.addChild(img);
+    stage.addChild(boilerPlateText);
     // Enable mouseover and tracking
     stage.enableMouseOver(20);
     // Set FPS
@@ -14,10 +29,7 @@ function init() {
 }
 // Update loop
 function gameLoop(event) {
-    // Initialize text value
-    var boilerPlateText = new createjs.Text("Comp 397 - Boiler Plate", "60px Consolas", "#FFF");
-    this.stage.addChild(boilerPlateText);
-    this.stage.update();
-    this.simulate();
+    stage.update();
 }
+init();
 //# sourceMappingURL=game.js.map
